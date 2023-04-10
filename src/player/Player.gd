@@ -1,4 +1,5 @@
 #naprawić flip dasha kiedy dashujesz w przeciwną stronę w którą idziesz
+#zająć się deltą w skryptach chodzenia
 
 extends CharacterBody2D
 
@@ -31,22 +32,22 @@ func _physics_process(delta):
 	elif dashing and velocity.y >= 0:
 		velocity.y = 0
 	
-	if abs(Input.get_accelerometer().x) > 0.8: #obliczanie szybkości i kierunku
+	if abs(Input.get_accelerometer().x) > 0.8 and !dashing: #obliczanie szybkości i kierunku
 		velocity.x = Input.get_accelerometer().x * WALK_SPEED
-	elif abs(velocity.x) <= 15: #zatrzymanie się, lepsze niż zwykłe else, ponieważ ruch jest trochę bardziej płynny
+	elif abs(velocity.x) <= 15 and !dashing: #zatrzymanie się, lepsze niż zwykłe else, ponieważ ruch jest trochę bardziej płynny
 		velocity.x = 0
 	
-	if velocity.x > 0: #prawo
+	if velocity.x > 0 and !dashing: #prawo
 		velocity.x -= 15 #podczas chodzenia, zwolnij postać o 15px, dzięki temu (i ifie wyżej) postać może stanąć w miejscu
-	elif velocity.x < 0:
+	elif velocity.x < 0 and !dashing:
 		velocity.x += 15 #podczas chodzenia, zwolnij postać o 15px, dzięki temu (i ifie wyżej) postać może stanąć w miejscu
 	
 	#do testów#
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") and !dashing:
 		velocity.x = -WALK_SPEED * 2
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("ui_right") and !dashing:
 		velocity.x =  WALK_SPEED * 2
-	elif Input.is_action_just_pressed("ui_up"):
+	elif Input.is_action_just_pressed("ui_up") and !dashing:
 		jump()
 	
 	if $AnimatedSprite2D.animation != "idle" and $AnimatedSprite2D.is_playing() == true:
@@ -126,11 +127,6 @@ func jump():
 		jump_count -= 1
 		print("skok z ziemi")
 
-var touching_left_wall = false
-var touching_right_wall = false
-var touching_ceiling = false
-var tween: Tween
-
 #całkowity czas trwania dasha
 func dashTimer():
 	self.modulate = Color(0,1,0)
@@ -143,44 +139,6 @@ func dashTimer():
 	
 	if direction == 2:
 		velocity.y -= 90
-
-#ta funkcja kalkuluje ile pixeli powinien zostać przeniesiony gracz
-#direction 2 = góra, 1 = prawo, 0 = lewo
-#func dash():
-#	var nowa_pozycja = Vector2(0,0)
-#	var time = 0.1
-#	tween = create_tween()
-#	tween.stop()
-#
-#	if dash_count > 0:
-#		dashing = true
-#		if direction == 0 or direction == 1:
-#			$AnimatedSprite2D.play("dash")
-#		match direction:
-#			0:
-#				nowa_pozycja = Vector2(position.x-100, position.y)
-#				if touching_left_wall: #jeżeli nowa pozycja wyjdzie poza granicę
-#					nowa_pozycja.x = position.x #to nie poruszaj
-#			1:
-#				nowa_pozycja = Vector2(position.x+100, position.y)
-#				if touching_right_wall: #jeżeli nowa pozycja wyjdzie poza granicę
-#					nowa_pozycja.x = position.x #to nie poruszaj
-#			2:
-#				$AnimatedSprite2D.animation = "jump"
-#				nowa_pozycja = Vector2(position.x, position.y-100)
-#				if touching_ceiling: #jeżeli nowa pozycja wyjdzie poza granicę
-#					nowa_pozycja.y = position.y #to nie poruszaj
-#
-#		tween.tween_property(self, "position", nowa_pozycja, time).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
-#		tween.play()
-#		dash_count -= 1
-#
-#		dashTimer()
-#
-#		if direction == 2: #reset grawitacji
-#			velocity.y = -200
-#		else:
-#			velocity.y = -50
 
 func dash():
 	if dash_count > 0:
@@ -200,36 +158,3 @@ func dash():
 		
 		dash_count -= 1
 		dashTimer()
-
-#zatrzymywanie się na ścianach 
-func _on_up_stop_body_entered(body):
-	if body.name != "player":
-		touching_ceiling = true
-		if tween and direction == 2:
-			tween.kill()
-
-func _on_up_stop_body_exited(body):
-	if body.name != "player":
-		touching_ceiling = false
-
-func _on_left_stop_body_entered(body):
-	if body.name != "player":
-		touching_left_wall = true
-		if tween and direction == 0:
-			tween.kill()
-
-func _on_left_stop_body_exited(body):
-	if body.name != "player":
-		touching_left_wall = false
-
-func _on_right_stop_body_entered(body):
-	if body.name != "player":
-		touching_right_wall = true
-		if tween and direction == 1:
-			print("xd")
-			tween.kill()
-
-func _on_right_stop_body_exited(body):
-	if body.name != "player":
-		touching_right_wall = false
-

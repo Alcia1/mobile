@@ -29,6 +29,7 @@ collision_friction = 0.35
 collision_bounce = 0.2
 
 [node name="enemy" type="Area2D"]
+position = Vector2(16, 18)
 script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -47,4 +48,4 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 
-[connection signal="body_entered" from="." to="." method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
