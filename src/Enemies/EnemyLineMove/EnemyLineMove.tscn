@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba3qc4up8rpiv"]
+[gd_scene load_steps=7 format=3 uid="uid://c1vcan4oi1ec3"]
 
-[ext_resource type="Texture2D" uid="uid://71i1plk8wb6p" path="res://icon.png" id="1"]
-[ext_resource type="Script" path="res://src/enemy/enemy.gd" id="2"]
+[ext_resource type="Script" path="res://src/Enemies/EnemyLineMove/EnemyLineMove.gd" id="1_p8w2u"]
+[ext_resource type="Texture2D" uid="uid://71i1plk8wb6p" path="res://icon.png" id="2_lg1ht"]
 
 [sub_resource type="CircleShape2D" id="5"]
 
@@ -30,7 +30,7 @@ collision_bounce = 0.2
 
 [node name="enemy" type="Area2D"]
 position = Vector2(16, 18)
-script = ExtResource("2")
+script = ExtResource("1_p8w2u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("5")
@@ -38,7 +38,7 @@ shape = SubResource("5")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.24, 0.239999)
-texture = ExtResource("1")
+texture = ExtResource("2_lg1ht")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false

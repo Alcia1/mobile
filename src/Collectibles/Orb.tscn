@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://0ee4h06j53v3"]
+
+[ext_resource type="Script" path="res://src/Collectibles/Orb.gd" id="1_p0xlh"]
+[ext_resource type="Texture2D" uid="uid://71i1plk8wb6p" path="res://icon.png" id="1_sc0v7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aoehf"]
+radius = 34.0
+height = 68.0
+
+[node name="Orb" type="Area2D"]
+script = ExtResource("1_p0xlh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.894118, 0.894118, 1)
+texture = ExtResource("1_sc0v7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_aoehf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -3,8 +3,8 @@ extends Area2D
 
 var speed = 50
 
-func _process(delta):
-	position.x += speed * delta
+#func _process(delta):
+#	position.x += speed * delta
 
 func destroy():
 	print("enemy dead")
@@ -24,8 +24,9 @@ func _on_body_entered(body):
 		if body.dashing == true:
 			body.jump_count = 2
 			body.dash_count = 1
+			body.enemies_count += 1
 			call_deferred("destroy")
 		else:
-			body.hit()
+			body.call_deferred("hit")
 	else:
 		speed = -speed

@@ -11,16 +11,21 @@ config_version=5
 [application]
 
 config/name="projekt inżynierski"
-run/main_scene="res://src/levels/arena test.tscn"
+run/main_scene="res://src/Screens/MainMenu.tscn"
 config/features=PackedStringArray("4.0")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.png"
+
+[autoload]
+
+SaveGame="*res://save_game.gd"
 
 [display]
 
 window/size/viewport_width=270
-window/stretch/mode="2d"
-window/stretch/aspect="expand"
-window/handheld/orientation="portrait"
+window/size/initial_position=Vector2i(135, 324)
+window/stretch/mode="viewport"
+window/handheld/orientation=1
 
 [editor]
 
@@ -58,5 +63,9 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 environment/defaults/default_environment="res://default_env.tres"
 2d/snapping/use_gpu_pixel_snap=true
