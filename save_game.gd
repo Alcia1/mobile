@@ -4,35 +4,43 @@ extends Node
 var saveDataCampaign = {
 	"1" = {
 		"max_score": 1300,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	},
 	"2" = {
 		"max_score": 2200,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	},
 	"3" = {
 		"max_score": 2300,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	},
 	"4" = {
 		"max_score": 3200,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	},
 	"5" = {
 		"max_score": 2600,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	},
 	"6" = {
 		"max_score": 2300,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	},
 	"7" = {
 		"max_score": 2300,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	},
 	"8" = {
 		"max_score": 3600,
-		"high_score": 0
+		"high_score": 0,
+		"time": 0
 	}
 }
 
@@ -51,6 +59,7 @@ var saveDataSettings = {
 func resetSave():
 	for i in saveDataCampaign:
 		saveDataCampaign[i]["high_score"] = 0
+		saveDataCampaign[i]["time"] = 0
 	
 	saveDataEndless["high_score"] = 0
 	saveDataEndless["distance_traveled"] = 0
@@ -64,9 +73,10 @@ func resetSave():
 	saveToFile()
 	loadFromFile()
 
-func saveCampaign(level, score):
+func saveCampaign(level, score, time):
 	if score > saveDataCampaign[str(level)]["high_score"]:
 		saveDataCampaign[str(level)]["high_score"] = score
+	saveDataCampaign[str(level)]["time"] = time
 	
 	saveToFile()
 
@@ -92,12 +102,14 @@ func saveToFile():
 	saveFile.store_line("saveDataCampaign")
 	for i in saveDataCampaign:
 		print(i)
-		print(str(saveDataCampaign[i]["max_score"]))
+		print(str(saveDataCampaign[i]["time"]))
 		saveFile.store_line(i)
 		saveFile.store_line("max_score")
 		saveFile.store_line(str(saveDataCampaign[i]["max_score"]))
 		saveFile.store_line("high_score")
 		saveFile.store_line(str(saveDataCampaign[i]["high_score"]))
+		saveFile.store_line("time")
+		saveFile.store_line(str(saveDataCampaign[i]["time"]))
 	
 	saveFile.store_line("saveDataEndless")
 	saveFile.store_line("high_score")
@@ -148,7 +160,7 @@ func loadFromFile():
 						else:
 							saveDataCampaign[campaignLevel][campaignKey] = int(line)
 							
-							if campaignKey == "high_score":
+							if campaignKey == "time":
 								campaignLevel = ""
 							
 							campaignKey = ""

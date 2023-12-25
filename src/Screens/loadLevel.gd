@@ -8,3 +8,6 @@ func _on_pressed():
 func displayCompleted():
 	get_child(1).visible = true
 
+func displayTime(time):
+	$Label3.text = time
+	$Label3.visible = true

@@ -34,6 +34,8 @@ func displayCampaignStats():
 		instance.get_child(0).text = "level " + i
 		if SaveGame.saveDataCampaign[i]["high_score"] == SaveGame.saveDataCampaign[i]["max_score"]:
 			instance.displayCompleted()
+		if SaveGame.saveDataCampaign[i]["time"] != 0:
+			instance.displayTime(Time.get_time_string_from_unix_time(SaveGame.saveDataCampaign[i]["time"]))
 			
 		CampaignMenu.add_child(instance)
 
