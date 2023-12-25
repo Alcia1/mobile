@@ -1,9 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuptju6fgb1xq"]
+[gd_scene load_steps=14 format=3 uid="uid://cuptju6fgb1xq"]
 
 [ext_resource type="Script" path="res://src/Enemies/EnemyBase/EnemyBase.gd" id="1_p8cpp"]
-[ext_resource type="Texture2D" uid="uid://71i1plk8wb6p" path="res://icon.png" id="2_wdjnu"]
+[ext_resource type="Texture2D" uid="uid://dynw3w3wr8a1x" path="res://assets/enemies/stationary-Sheet.png" id="2_nkuur"]
+[ext_resource type="FontFile" uid="uid://cjas0wmt8xyms" path="res://assets/font/joystix/joystix monospace.otf" id="3_xx7rf"]
 
 [sub_resource type="CircleShape2D" id="5"]
+radius = 8.51469
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0ack"]
+atlas = ExtResource("2_nkuur")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp1in"]
+atlas = ExtResource("2_nkuur")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecjyd"]
+atlas = ExtResource("2_nkuur")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ek0n"]
+atlas = ExtResource("2_nkuur")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n482u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0ack")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp1in")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecjyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ek0n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_7ctpi"]
 offsets = PackedFloat32Array(0.79562, 1)
@@ -13,38 +51,50 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_7ctpi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q6phm"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(10, 10, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
-gravity = Vector3(0, 250, 0)
 initial_velocity_min = 90.0
 initial_velocity_max = 110.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 250, 0)
+scale_min = 2.0
+scale_max = 2.0
 color_ramp = SubResource("GradientTexture1D_mde1n")
-collision_mode = 1
-collision_friction = 0.35
-collision_bounce = 0.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_xqay3"]
+font = ExtResource("3_xx7rf")
 
 [node name="enemy" type="Area2D"]
+collision_layer = 7
+collision_mask = 2
 script = ExtResource("1_p8cpp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.24, 0.239999)
-texture = ExtResource("2_wdjnu")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n482u")
+autoplay = "default"
+frame_progress = 0.799817
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_q6phm")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -35.0
+offset_right = 20.0
+offset_bottom = -12.0
+text = "100"
+label_settings = SubResource("LabelSettings_xqay3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

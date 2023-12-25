@@ -12,13 +12,15 @@ config_version=5
 
 config/name="projekt inżynierski"
 run/main_scene="res://src/Screens/MainMenu.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.2")
+run/max_fps=90
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.png"
 
 [autoload]
 
 SaveGame="*res://save_game.gd"
+SceneManager="res://scene_manager.gd"
 
 [display]
 
@@ -52,10 +54,22 @@ space={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
 ]
 }
+shift={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="enemyBoundary"
+2d_physics/layer_4="collectibles"
 
 [physics]
 

@@ -1,0 +1,603 @@
+[gd_scene load_steps=15 format=3 uid="uid://fpgmtbhcsoia"]
+
+[ext_resource type="Script" path="res://src/levels/designed_levels/base.gd" id="1_6aaoe"]
+[ext_resource type="PackedScene" uid="uid://c2ibjq5ieypqd" path="res://src/player/Player.tscn" id="2_4y6xu"]
+[ext_resource type="Script" path="res://src/levels/designed_levels/levelCamera.gd" id="3_iy1di"]
+[ext_resource type="TileSet" uid="uid://b1ro8bf3hg42k" path="res://src/levels/test_TS.tres" id="4_unedr"]
+[ext_resource type="Script" path="res://src/Screens/BGColor.gd" id="5_515n1"]
+[ext_resource type="LabelSettings" uid="uid://bwanrr2igi5cs" path="res://src/Screens/interfaceFont.tres" id="6_bh8qp"]
+[ext_resource type="Texture2D" uid="uid://d3r4rbb0qcf6c" path="res://assets/interface/buttonBG.png" id="7_vu2te"]
+[ext_resource type="Texture2D" uid="uid://d3nyt16n3se2p" path="res://assets/interface/buttonBGClicked.png" id="8_2xn75"]
+[ext_resource type="Texture2D" uid="uid://7c5exaqy3jdc" path="res://assets/interface/pause_button.png" id="9_ucmtv"]
+[ext_resource type="AudioStream" uid="uid://bycgrnvxt5p6p" path="res://assets/music/Clement Panchout - Sweet 70s.wav" id="10_7krno"]
+[ext_resource type="PackedScene" uid="uid://bdkvmbg83dv8m" path="res://src/Enemies/EnemySpawner/EnemySpawner.tscn" id="10_23ati"]
+[ext_resource type="PackedScene" uid="uid://cuptju6fgb1xq" path="res://src/Enemies/EnemyBase/EnemyBase.tscn" id="11_8nu2y"]
+[ext_resource type="PackedScene" uid="uid://spekhfa20cwy" path="res://src/player/Collectibles/carrot.tscn" id="12_2nrlr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lq8tb"]
+size = Vector2(289, 6)
+
+[node name="base" type="Node2D"]
+script = ExtResource("1_6aaoe")
+maxPoints = 2300
+levelNumber = 3
+
+[node name="player" parent="." instance=ExtResource("2_4y6xu")]
+position = Vector2(129, 620)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(135, 324)
+limit_bottom = 648
+script = ExtResource("3_iy1di")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("4_unedr")
+format = 2
+layer_0/tile_data = PackedInt32Array(2555906, 65538, 4, 2555907, 65538, 4, 2555908, 65538, 4, 2555909, 65538, 4, 2555910, 65538, 4, 2555911, 65538, 4, 2555912, 65538, 4, 2555913, 65538, 4, 2555914, 65538, 4, 2555915, 65538, 4, 2555916, 65538, 4, 2555917, 65538, 4, 2555918, 65538, 4, 2555919, 65538, 4, 2555905, 65538, 4, 2621440, 131074, 0, 2621441, 131074, 0, 2621442, 131074, 0, 2621443, 131074, 0, 2621444, 131074, 0, 2621445, 131074, 0, 2621446, 131074, 0, 2621447, 131074, 0, 2621448, 131074, 0, 2621449, 131074, 0, 2621450, 131074, 0, 2621451, 131074, 0, 2621452, 131074, 0, 2621453, 131074, 0, 2621454, 131074, 0, 2621455, 131074, 0, 2621456, 131074, 0, 2490384, 131074, 3, 2424848, 131074, 3, 2359312, 131074, 3, 2293776, 131074, 3, 2228240, 131074, 3, 2162704, 131074, 3, 2097168, 131074, 3, 2031632, 131074, 3, 1966096, 131074, 3, 2490368, 2, 3, 2424832, 2, 3, 2359296, 2, 3, 2293760, 2, 3, 2228224, 2, 3, 2162688, 2, 3, 2097152, 2, 3, 2031616, 2, 3, 1966080, 2, 3, 2555920, 131074, 4, 2555904, 2, 4, 1900544, 2, 3, 1835008, 2, 3, 1769472, 2, 3, 1703936, 2, 3, 1638400, 2, 3, 1572864, 2, 3, 1507328, 2, 3, 1441792, 2, 3, 1376256, 2, 3, 1310720, 2, 3, 1245184, 2, 3, 1179648, 2, 3, 458752, 2, 3, 524288, 2, 3, 589824, 2, 3, 655360, 2, 3, 720896, 2, 3, 786432, 2, 3, 851968, 2, 3, 917504, 2, 3, 983040, 2, 3, 1048576, 2, 3, 1114112, 2, 3, -589824, 2, 3, -524288, 2, 3, -458752, 2, 3, -393216, 2, 3, -327680, 2, 3, -262144, 2, 3, -196608, 2, 3, -131072, 2, 3, -65536, 2, 3, 0, 2, 3, 65536, 2, 3, 131072, 2, 3, 196608, 2, 3, 262144, 2, 3, 327680, 2, 3, 393216, 2, 3, 524304, 131074, 3, 589840, 131074, 3, 655376, 131074, 3, 720912, 131074, 3, 786448, 131074, 3, 851984, 131074, 3, 917520, 131074, 3, 983056, 131074, 3, 1048592, 131074, 3, 1114128, 131074, 3, 1179664, 131074, 3, 1245200, 131074, 3, 1310736, 131074, 3, 1376272, 131074, 3, 1441808, 131074, 3, 1572880, 131074, 3, 1638416, 131074, 3, 1703952, 131074, 3, 1769488, 131074, 3, 1835024, 131074, 3, 1900560, 131074, 3, 1507344, 131074, 3, -393200, 131074, 3, -327664, 131074, 3, -262128, 131074, 3, -196592, 131074, 3, -131056, 131074, 3, -65520, 131074, 3, 16, 131074, 3, 65552, 131074, 3, 131088, 131074, 3, 196624, 131074, 3, 262160, 131074, 3, 327696, 131074, 3, 393232, 131074, 3, 458768, 131074, 3, -1376256, 2, 3, -1310720, 2, 3, -1245184, 2, 3, -1179648, 2, 3, -1114112, 2, 3, -1048576, 2, 3, -983040, 2, 3, -917504, 2, 3, -851968, 2, 3, -786432, 2, 3, -720896, 2, 3, -655360, 2, 3, -1376240, 131074, 3, -1310704, 131074, 3, -1245168, 131074, 3, -1179632, 131074, 3, -1114096, 131074, 3, -1048560, 131074, 3, -983024, 131074, 3, -917488, 131074, 3, -851952, 131074, 3, -786416, 131074, 3, -720880, 131074, 3, -655344, 131074, 3, -589808, 131074, 3, -524272, 131074, 3, -458736, 131074, 3, -2686976, 2, 3, -2621440, 2, 3, -2555904, 2, 3, -2490368, 2, 3, -2424832, 2, 3, -2359296, 2, 3, -2293760, 2, 3, -2228224, 2, 3, -2162688, 2, 3, -2097152, 2, 3, -2031616, 2, 3, -1966080, 2, 3, -1900544, 2, 3, -1835008, 2, 3, -1769472, 2, 3, -1703936, 2, 3, -1638400, 2, 3, -1572864, 2, 3, -1507328, 2, 3, -1441792, 2, 3, -2686960, 131074, 3, -2621424, 131074, 3, -2555888, 131074, 3, -2490352, 131074, 3, -2424816, 131074, 3, -2359280, 131074, 3, -2293744, 131074, 3, -2228208, 131074, 3, -2162672, 131074, 3, -2097136, 131074, 3, -2031600, 131074, 3, -1966064, 131074, 3, -1900528, 131074, 3, -1834992, 131074, 3, -1769456, 131074, 3, -1572848, 131074, 3, -1507312, 131074, 3, -1441776, 131074, 3, -1638384, 131074, 3, -1703920, 131074, 3, -3473408, 2, 3, -3407872, 2, 3, -3342336, 2, 3, -3276800, 2, 3, -3211264, 2, 3, -3145728, 2, 3, -3080192, 2, 3, -2818048, 2, 3, -2752512, 2, 3, -2883584, 2, 3, -2949120, 2, 3, -3014656, 2, 3, -3473392, 131074, 3, -3407856, 131074, 3, -3342320, 131074, 3, -3276784, 131074, 3, -3211248, 131074, 3, -3145712, 131074, 3, -3080176, 131074, 3, -3014640, 131074, 3, -2752496, 131074, 3, -2818032, 131074, 3, -2883568, 131074, 3, -2949104, 131074, 3, -4063216, 131074, 3, -3997680, 131074, 3, -3932144, 131074, 3, -3866608, 131074, 3, -3801072, 131074, 3, -3735536, 131074, 3, -3670000, 131074, 3, -3604464, 131074, 3, -3538928, 131074, 3, -4063232, 2, 3, -3997696, 2, 3, -3932160, 2, 3, -3866624, 2, 3, -3801088, 2, 3, -3735552, 2, 3, -3670016, 2, 3, -3604480, 2, 3, -3538944, 2, 3, -4128768, 2, 3, -4194304, 2, 3, -4259840, 2, 3, -4325376, 2, 3, -4390912, 2, 3, -4456448, 2, 3, -4521984, 2, 3, -4587520, 2, 3, -4653056, 2, 3, -4718592, 2, 3, -4784128, 2, 3, -4849664, 2, 3, -4915200, 2, 3, -4980736, 2, 3, -5046272, 2, 3, -5111808, 2, 3, -5177344, 2, 3, -4128752, 131074, 3, -4194288, 131074, 3, -4259824, 131074, 3, -4325360, 131074, 3, -4390896, 131074, 3, -4456432, 131074, 3, -4521968, 131074, 3, -4587504, 131074, 3, -4653040, 131074, 3, -4718576, 131074, 3, -4784112, 131074, 3, -4849648, 131074, 3, -4915184, 131074, 3, -4980720, 131074, 3, -5046256, 131074, 3, -5111792, 131074, 3, -5177328, 131074, 3, -5242880, 2, 3, -5308416, 2, 3, -5373952, 2, 3, -5439488, 2, 3, -5505024, 2, 3, -5570560, 2, 3, -5636096, 2, 3, -5701632, 2, 3, -5767168, 2, 3, -6160384, 2, 3, -6094848, 2, 3, -6029312, 2, 3, -5963776, 2, 3, -5898240, 2, 3, -5832704, 2, 3, -6160368, 131074, 3, -6094832, 131074, 3, -6029296, 131074, 3, -5963760, 131074, 3, -5898224, 131074, 3, -5308400, 131074, 3, -5242864, 131074, 3, -5373936, 131074, 3, -5439472, 131074, 3, -5505008, 131074, 3, -5570544, 131074, 3, -5636080, 131074, 3, -5701616, 131074, 3, -5767152, 131074, 3, -5832688, 131074, 3, -6225920, 2, 3, -6225904, 131074, 3, -7798784, 2, 3, -7733248, 2, 3, -7667712, 2, 3, -7602176, 2, 3, -7471104, 2, 3, -7405568, 2, 3, -7340032, 2, 3, -7274496, 2, 3, -7208960, 2, 3, -7143424, 2, 3, -7077888, 2, 3, -7012352, 2, 3, -6946816, 2, 3, -6881280, 2, 3, -6815744, 2, 3, -6750208, 2, 3, -6684672, 2, 3, -6619136, 2, 3, -6553600, 2, 3, -6488064, 2, 3, -6422528, 2, 3, -6291456, 2, 3, -7798768, 131074, 3, -7733232, 131074, 3, -7667696, 131074, 3, -7602160, 131074, 3, -7536624, 131074, 3, -7471088, 131074, 3, -7405552, 131074, 3, -7340016, 131074, 3, -7274480, 131074, 3, -7208944, 131074, 3, -7143408, 131074, 3, -7077872, 131074, 3, -7012336, 131074, 3, -6946800, 131074, 3, -6881264, 131074, 3, -6815728, 131074, 3, -6750192, 131074, 3, -6684656, 131074, 3, -6619120, 131074, 3, -6553584, 131074, 3, -6488048, 131074, 3, -6422512, 131074, 3, -6356976, 131074, 3, -6291440, 131074, 3, -8847344, 131074, 3, -8781808, 131074, 3, -8716272, 131074, 3, -8650736, 131074, 3, -8585200, 131074, 3, -8519664, 131074, 3, -8454128, 131074, 3, -8388592, 131074, 3, -8323056, 131074, 3, -8257520, 131074, 3, -8191984, 131074, 3, -8126448, 131074, 3, -8060912, 131074, 3, -7995376, 131074, 3, -7929840, 131074, 3, -7864304, 131074, 3, -8847360, 2, 3, -8781824, 2, 3, -8716288, 2, 3, -8650752, 2, 3, -8585216, 2, 3, -8519680, 2, 3, -8454144, 2, 3, -8388608, 2, 3, -8323072, 2, 3, -8257536, 2, 3, -8192000, 2, 3, -8126464, 2, 3, -8060928, 2, 3, -7995392, 2, 3, -7929856, 2, 3, -7864320, 2, 3, 2162700, 2, 1, 1376264, 2, 1, 589836, 131074, 1, -458751, 65538, 1, -458750, 65538, 1, -458749, 65538, 1, -458748, 65538, 1, -458747, 65538, 1, -458746, 65538, 1, -458745, 65538, 1, -458744, 131074, 1, -3670015, 65538, 1, -3670014, 65538, 1, -3670013, 65538, 1, -3670012, 65538, 1, -3670011, 65538, 1, -3670010, 65538, 1, -3670009, 131074, 1, -3211254, 196610, 1, -4194293, 2, 1, -3211253, 262146, 1, -3211252, 262146, 1, -3211251, 262146, 1, -3211250, 262146, 1, -3211249, 262146, 1, -5177335, 2, 1, -5177334, 65538, 1, -5177333, 65538, 1, -5177332, 65538, 1, -5177331, 65538, 1, -5177330, 65538, 1, -5177329, 65538, 1, -5177340, 262146, 1, -5177341, 262146, 1, -5177342, 262146, 1, -5177343, 262146, 1, -7536640, 2, 3, -5046267, 196610, 4, -5111803, 196610, 3, -5177339, 196610, 3, -5242875, 196610, 3, -5308411, 196610, 3, -5373947, 196610, 3, 589835, 65538, 1, 589834, 65538, 1, 589833, 65538, 1, 589832, 65538, 1, 589831, 65538, 1, 589830, 65538, 1, 589829, 65538, 1, 589828, 65538, 1, 589827, 65538, 1, 589826, 65538, 1, 589825, 65538, 1, 2162692, 131074, 1, -5439473, 65538, 1, -5439474, 65538, 1, -5439475, 65538, 1, -5439476, 65538, 1, -5439477, 65538, 1, -5439478, 65538, 1, -5439479, 65538, 1, -5439480, 65538, 1, -5439481, 65538, 1, -5439482, 2, 1, -5439483, 196610, 2, -6356992, 2, 3, -7798769, 262146, 0, -7798770, 262146, 0, -7798771, 262146, 0, -7798772, 262146, 0, -7798773, 262146, 0, -7798774, 262146, 0, -7798775, 262146, 0, -7798776, 262146, 0, -7798777, 262146, 0, -7798778, 262146, 0, -7798779, 262146, 0, -7798780, 262146, 0, -7798781, 262146, 0, -7798782, 262146, 0, -7798783, 262146, 0, -10158080, 2, 3, -10092544, 2, 3, -10027008, 2, 3, -9961472, 2, 3, -9895936, 2, 3, -9830400, 2, 3, -9764864, 2, 3, -9699328, 2, 3, -9633792, 2, 3, -9568256, 2, 3, -9502720, 2, 3, -9437184, 2, 3, -9371648, 2, 3, -9306112, 2, 3, -9240576, 2, 3, -9175040, 2, 3, -9109504, 2, 3, -9043968, 2, 3, -8978432, 2, 3, -8912896, 2, 3, -10158064, 131074, 3, -10092528, 131074, 3, -10026992, 131074, 3, -9961456, 131074, 3, -9895920, 131074, 3, -9830384, 131074, 3, -9764848, 131074, 3, -9699312, 131074, 3, -9633776, 131074, 3, -9568240, 131074, 3, -9502704, 131074, 3, -9437168, 131074, 3, -9371632, 131074, 3, -9306096, 131074, 3, -9240560, 131074, 3, -9175024, 131074, 3, -9109488, 131074, 3, -9043952, 131074, 3, -8978416, 131074, 3, -8912880, 131074, 3, -10223600, 131074, 2, -10223616, 2, 2, -10223615, 65538, 2, -10223614, 65538, 2, -10223613, 65538, 2, -10223612, 65538, 2, -10223611, 65538, 2, -10223610, 65538, 2, -10223609, 65538, 2, -10223608, 65538, 2, -10223607, 65538, 2, -10223606, 65538, 2, -10223605, 65538, 2, -10223604, 65538, 2, -10223603, 65538, 2, -10223602, 65538, 2, -10223601, 65538, 2, -4587519, 65538, 1, -4587518, 65538, 1, -4587517, 65538, 1, -4587516, 65538, 1, -4587515, 65538, 1, -4587514, 65538, 1, -4587513, 65538, 1, -4587512, 65538, 1, 2162691, 2, 1, 2162701, 131074, 1, 1376265, 131074, 1, -4194292, 131074, 1)
+
+[node name="endTrigger" type="Area2D" parent="."]
+position = Vector2(0, -1904)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endTrigger"]
+position = Vector2(134, -26)
+shape = SubResource("RectangleShape2D_lq8tb")
+
+[node name="debug" type="CanvasLayer" parent="."]
+
+[node name="debug" type="Control" parent="debug"]
+visible = false
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="debug/debug"]
+layout_mode = 0
+offset_left = 200.916
+offset_right = 240.916
+offset_bottom = 14.0
+text = "on floor"
+
+[node name="Label2" type="Label" parent="debug/debug"]
+layout_mode = 0
+offset_left = 200.916
+offset_top = 14.0
+offset_right = 240.916
+offset_bottom = 28.0
+text = "0"
+
+[node name="Label3" type="Label" parent="debug/debug"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 14.0
+text = "acc x:"
+
+[node name="Label4" type="Label" parent="debug/debug"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 80.0
+offset_bottom = 14.0
+
+[node name="Label5" type="Label" parent="debug/debug"]
+layout_mode = 0
+offset_left = 203.166
+offset_top = 29.7452
+offset_right = 243.166
+offset_bottom = 43.7452
+
+[node name="Label6" type="Label" parent="debug/debug"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 22.0
+offset_right = 41.0
+offset_bottom = 45.0
+
+[node name="endScreen" type="ColorRect" parent="debug"]
+visible = false
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(100, 150)
+script = ExtResource("5_515n1")
+
+[node name="BGColor2" type="ColorRect" parent="debug/endScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -147.5
+offset_right = 97.5
+offset_bottom = 147.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="debug/endScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -103.0
+offset_right = 62.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Try again"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="Button" type="TextureButton" parent="debug/endScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_vu2te")
+texture_pressed = ExtResource("8_2xn75")
+
+[node name="Label" type="Label" parent="debug/endScreen/Button"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 110.0
+offset_bottom = 44.0
+text = "Restart"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="backButton" type="TextureButton" parent="debug/endScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 52.0
+offset_right = 64.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_vu2te")
+texture_pressed = ExtResource("8_2xn75")
+
+[node name="Label" type="Label" parent="debug/endScreen/backButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -11.5
+offset_right = 26.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "back"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="score" type="ColorRect" parent="debug"]
+process_priority = 1
+offset_right = 270.0
+offset_bottom = 71.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="debug/score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0814815
+anchor_top = 0.929577
+anchor_right = 0.0814815
+anchor_bottom = 0.929577
+offset_top = -23.0
+offset_right = 80.0
+grow_vertical = 0
+text = "score:"
+label_settings = ExtResource("6_bh8qp")
+metadata/_edit_use_anchors_ = true
+
+[node name="scoreUpdate" type="Label" parent="debug/score"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 6.5
+offset_right = 8.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0
+"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="Label2" type="Label" parent="debug/score"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="victoryScreen" type="ColorRect" parent="debug"]
+visible = false
+z_index = 1
+offset_left = 35.0
+offset_top = 174.0
+offset_right = 235.0
+offset_bottom = 474.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(100, 150)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("5_515n1")
+
+[node name="BGColor" type="ColorRect" parent="debug/victoryScreen"]
+layout_mode = 0
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 197.5
+offset_bottom = 297.5
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="debug/victoryScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.0
+offset_top = 19.0
+offset_right = 93.0
+offset_bottom = 62.0
+grow_horizontal = 2
+text = "level
+finished"
+label_settings = ExtResource("6_bh8qp")
+horizontal_alignment = 1
+
+[node name="score" type="Label" parent="debug/victoryScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -72.0
+offset_right = 67.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "max score!"
+label_settings = ExtResource("6_bh8qp")
+horizontal_alignment = 1
+
+[node name="Button2" type="TextureButton" parent="debug/victoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_vu2te")
+texture_pressed = ExtResource("8_2xn75")
+
+[node name="Label" type="Label" parent="debug/victoryScreen/Button2"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 110.0
+offset_bottom = 44.0
+text = "Restart"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="backButton2" type="TextureButton" parent="debug/victoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 52.0
+offset_right = 64.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_vu2te")
+texture_pressed = ExtResource("8_2xn75")
+
+[node name="Label" type="Label" parent="debug/victoryScreen/backButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -11.5
+offset_right = 26.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "back"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="pause" type="TextureButton" parent="debug"]
+z_index = 1
+offset_left = 222.0
+offset_top = 25.0
+offset_right = 262.0
+offset_bottom = 65.0
+size_flags_horizontal = 8
+texture_normal = ExtResource("9_ucmtv")
+
+[node name="pauseScreen" type="ColorRect" parent="debug"]
+visible = false
+z_index = 1
+offset_left = 35.0
+offset_top = 174.0
+offset_right = 235.0
+offset_bottom = 474.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(100, 150)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("5_515n1")
+
+[node name="BGColor" type="ColorRect" parent="debug/pauseScreen"]
+layout_mode = 0
+offset_left = 2.5
+offset_top = 2.5
+offset_right = 197.5
+offset_bottom = 297.5
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="debug/pauseScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -93.0
+offset_top = 21.0
+offset_right = 93.0
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "Paused"
+label_settings = ExtResource("6_bh8qp")
+horizontal_alignment = 1
+
+[node name="Button2" type="TextureButton" parent="debug/pauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -14.0
+offset_right = 64.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_vu2te")
+texture_pressed = ExtResource("8_2xn75")
+
+[node name="Label" type="Label" parent="debug/pauseScreen/Button2"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 21.0
+offset_right = 110.0
+offset_bottom = 44.0
+text = "Restart"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="backButton2" type="TextureButton" parent="debug/pauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_vu2te")
+texture_pressed = ExtResource("8_2xn75")
+
+[node name="Label" type="Label" parent="debug/pauseScreen/backButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -11.5
+offset_right = 26.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "back"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="resume" type="TextureButton" parent="debug/pauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -91.0
+offset_right = 64.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_vu2te")
+texture_pressed = ExtResource("8_2xn75")
+
+[node name="Label" type="Label" parent="debug/pauseScreen/resume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -11.5
+offset_right = 26.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "resume"
+label_settings = ExtResource("6_bh8qp")
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="EnemySpawner" parent="enemies" instance=ExtResource("10_23ati")]
+position = Vector2(64, -330)
+rightWallCords = Vector2(194, 0)
+
+[node name="CollisionShape2D2" parent="enemies/EnemySpawner/EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(194, 0)
+
+[node name="EnemySpawner2" parent="enemies" instance=ExtResource("10_23ati")]
+position = Vector2(64, -500)
+rightWallCords = Vector2(194, 0)
+
+[node name="enemy" parent="enemies/EnemySpawner2/EnemyBoundary" index="0"]
+position = Vector2(68, 0)
+
+[node name="CollisionShape2D2" parent="enemies/EnemySpawner2/EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(194, 0)
+
+[node name="EnemySpawner3" parent="enemies" instance=ExtResource("10_23ati")]
+position = Vector2(64, -674)
+rightWallCords = Vector2(194, 0)
+
+[node name="enemy" parent="enemies/EnemySpawner3/EnemyBoundary" index="0"]
+position = Vector2(165, 0)
+
+[node name="CollisionShape2D2" parent="enemies/EnemySpawner3/EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(194, 0)
+
+[node name="EnemySpawner5" parent="enemies" instance=ExtResource("10_23ati")]
+position = Vector2(64, -1472)
+rightWallCords = Vector2(194, 0)
+
+[node name="CollisionShape2D2" parent="enemies/EnemySpawner5/EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(194, 0)
+
+[node name="EnemySpawner6" parent="enemies" instance=ExtResource("10_23ati")]
+position = Vector2(64, -1642)
+rightWallCords = Vector2(194, 0)
+
+[node name="enemy" parent="enemies/EnemySpawner6/EnemyBoundary" index="0"]
+position = Vector2(68, 0)
+
+[node name="CollisionShape2D2" parent="enemies/EnemySpawner6/EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(194, 0)
+
+[node name="EnemySpawner7" parent="enemies" instance=ExtResource("10_23ati")]
+position = Vector2(64, -1816)
+rightWallCords = Vector2(194, 0)
+
+[node name="enemy" parent="enemies/EnemySpawner7/EnemyBoundary" index="0"]
+position = Vector2(165, 0)
+
+[node name="CollisionShape2D2" parent="enemies/EnemySpawner7/EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(194, 0)
+
+[node name="EnemySpawner4" parent="enemies" instance=ExtResource("10_23ati")]
+position = Vector2(66, -921)
+
+[node name="enemy" parent="enemies" instance=ExtResource("11_8nu2y")]
+position = Vector2(193, -1038)
+
+[node name="enemy2" parent="enemies" instance=ExtResource("11_8nu2y")]
+position = Vector2(105, -1174)
+
+[node name="enemy3" parent="enemies" instance=ExtResource("11_8nu2y")]
+position = Vector2(52, -1284)
+
+[node name="collectibles" type="Node2D" parent="."]
+
+[node name="Carrot" parent="collectibles" instance=ExtResource("12_2nrlr")]
+position = Vector2(48, -73)
+
+[node name="Carrot2" parent="collectibles" instance=ExtResource("12_2nrlr")]
+position = Vector2(78, -609)
+
+[node name="Carrot3" parent="collectibles" instance=ExtResource("12_2nrlr")]
+position = Vector2(178, -1299)
+
+[node name="Carrot4" parent="collectibles" instance=ExtResource("12_2nrlr")]
+position = Vector2(224, -1299)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_7krno")
+autoplay = true
+
+[node name="obstacles" type="TileMap" parent="."]
+tile_set = ExtResource("4_unedr")
+format = 2
+layer_0/tile_data = PackedInt32Array(524297, 262146, 2, 524296, 262146, 2, 524295, 262146, 2, 524294, 262146, 2, 524293, 262146, 2, 524292, 262146, 2, 524291, 262146, 2, 524290, 262146, 2, 524289, 262146, 2, -6225919, 327682, 2, -6225918, 327682, 2, -6225917, 327682, 2, -6225916, 327682, 2, -6225910, 327682, 2, -6225909, 327682, 2, -6225908, 327682, 2, -6225907, 327682, 2, -6225906, 327682, 2, -6225905, 327682, 2, -6946809, 327682, 2, -6946810, 327682, 2, -6946811, 327682, 2, -6946812, 327682, 2, -6946813, 327682, 2, -6946814, 327682, 2, -6946815, 327682, 2, -6946808, 327682, 2, -6946801, 327682, 2, -6946807, 327682, 2, -7733243, 327682, 2, -7733244, 327682, 2, -7733245, 327682, 2, -7733246, 327682, 2, -7733247, 327682, 2, -7733233, 327682, 2, -7733234, 327682, 2, -7733235, 327682, 2, -7733236, 327682, 2, -7733237, 327682, 2, -6291452, 262146, 2, -6291453, 262146, 2, -6291454, 262146, 2, -6291455, 262146, 2, -6291446, 262146, 2, -6291445, 262146, 2, -6291444, 262146, 2, -6291443, 262146, 2, -6291442, 262146, 2, -6291441, 262146, 2, -7012343, 262146, 2, -7012344, 262146, 2, -7012345, 262146, 2, -7012346, 262146, 2, -7012347, 262146, 2, -7012348, 262146, 2, -7012349, 262146, 2, -7012350, 262146, 2, -7012351, 262146, 2, -7012337, 262146, 2, -4653055, 262146, 2, -4653054, 262146, 2, -4653053, 262146, 2, -4653052, 262146, 2, -4653051, 262146, 2, -4653050, 262146, 2, -4653049, 262146, 2, -4653048, 262146, 2, 524298, 262146, 2)
+
+[connection signal="body_entered" from="endTrigger" to="." method="_on_end_trigger_body_entered"]
+[connection signal="body_exited" from="endTrigger" to="." method="_on_end_trigger_body_exited"]
+[connection signal="pressed" from="debug/endScreen/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="debug/endScreen/backButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="debug/victoryScreen/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="debug/victoryScreen/backButton2" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="debug/pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="debug/pauseScreen/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="debug/pauseScreen/backButton2" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="debug/pauseScreen/resume" to="." method="_on_resume_pressed"]
+
+[editable path="enemies/EnemySpawner"]
+[editable path="enemies/EnemySpawner/EnemyBoundary"]
+[editable path="enemies/EnemySpawner2"]
+[editable path="enemies/EnemySpawner2/EnemyBoundary"]
+[editable path="enemies/EnemySpawner3"]
+[editable path="enemies/EnemySpawner3/EnemyBoundary"]
+[editable path="enemies/EnemySpawner5"]
+[editable path="enemies/EnemySpawner5/EnemyBoundary"]
+[editable path="enemies/EnemySpawner6"]
+[editable path="enemies/EnemySpawner6/EnemyBoundary"]
+[editable path="enemies/EnemySpawner7"]
+[editable path="enemies/EnemySpawner7/EnemyBoundary"]
+[editable path="enemies/EnemySpawner4"]
+[editable path="enemies/EnemySpawner4/EnemyBoundary"]

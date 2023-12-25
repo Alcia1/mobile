@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://wriknwqriily"]
+
+[ext_resource type="PackedScene" uid="uid://c1vcan4oi1ec3" path="res://src/Enemies/EnemyLineMove/EnemyLineMove.tscn" id="1_wmen7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwmb5"]
+size = Vector2(5, 63.5)
+
+[node name="EnemyBoundary" type="Node2D"]
+
+[node name="enemy" parent="." instance=ExtResource("1_wmen7")]
+position = Vector2(-39, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 6
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-51, 0)
+shape = SubResource("RectangleShape2D_wwmb5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(57, 0)
+shape = SubResource("RectangleShape2D_wwmb5")

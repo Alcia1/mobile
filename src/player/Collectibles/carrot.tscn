@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://spekhfa20cwy"]
+
+[ext_resource type="Script" path="res://src/player/Collectibles/carrot.gd" id="1_bg8n5"]
+[ext_resource type="Texture2D" uid="uid://dudla710xqk1v" path="res://assets/player/carrot.png" id="1_xx5sl"]
+[ext_resource type="FontFile" uid="uid://cjas0wmt8xyms" path="res://assets/font/joystix/joystix monospace.otf" id="2_g2tx4"]
+[ext_resource type="AudioStream" uid="uid://dkpog3qfqpbru" path="res://assets/music/sfx/collect.mp3" id="4_m33t8"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_v4ya1"]
+points = PackedVector2Array(16, 0, 0, -16, -16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v71vc"]
+font = ExtResource("2_g2tx4")
+
+[node name="Carrot" type="Node2D"]
+script = ExtResource("1_bg8n5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_xx5sl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("ConvexPolygonShape2D_v4ya1")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -35.0
+offset_right = 20.0
+offset_bottom = -12.0
+text = "500"
+label_settings = SubResource("LabelSettings_v71vc")
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_m33t8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

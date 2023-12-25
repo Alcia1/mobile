@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://covy0kwxk1585"]
+
+[ext_resource type="TileSet" uid="uid://b1ro8bf3hg42k" path="res://src/levels/test_TS.tres" id="1_cx6u6"]
+[ext_resource type="Script" path="res://src/levels/generation_test/loadAnotherChunk.gd" id="2_7ut83"]
+[ext_resource type="PackedScene" uid="uid://wriknwqriily" path="res://src/Enemies/EnemyLineMove/EnemyBoundary.tscn" id="3_wxs6h"]
+[ext_resource type="PackedScene" uid="uid://spekhfa20cwy" path="res://src/player/Collectibles/carrot.tscn" id="4_pkv61"]
+[ext_resource type="PackedScene" uid="uid://cdglign4ucxrf" path="res://src/levels/designed_levels/jump_pad.tscn" id="5_t48pn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkx0r"]
+size = Vector2(294, 12)
+
+[node name="base" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_cx6u6")
+format = 2
+layer_0/tile_data = PackedInt32Array(2621456, 131074, 3, 2555920, 131074, 3, 2490384, 131074, 3, 2424848, 131074, 3, 2359312, 131074, 3, 2293776, 131074, 3, 2228240, 131074, 3, 2162704, 131074, 3, 2097168, 131074, 3, 2031632, 131074, 3, 1966096, 131074, 3, 1900560, 131074, 3, 1835024, 131074, 3, 1769488, 131074, 3, 1703952, 131074, 3, 1638416, 131074, 3, 1572880, 131074, 3, 1507344, 131074, 3, 1441808, 131074, 3, 1376272, 131074, 3, 1310736, 131074, 3, 1245200, 131074, 3, 1179664, 131074, 3, 1114128, 131074, 3, 1048592, 131074, 3, 983056, 131074, 3, 917520, 131074, 3, 851984, 131074, 3, 786448, 131074, 3, 720912, 131074, 3, 655376, 131074, 3, 589840, 131074, 3, 524304, 131074, 3, 458768, 131074, 3, 393232, 131074, 3, 327696, 131074, 3, 262160, 131074, 3, 196624, 131074, 3, 131088, 131074, 3, 65552, 131074, 3, 16, 131074, 3, 2621440, 2, 3, 2555904, 2, 3, 2490368, 2, 3, 2424832, 2, 3, 2359296, 2, 3, 2293760, 2, 3, 2228224, 2, 3, 2162688, 2, 3, 2097152, 2, 3, 2031616, 2, 3, 1966080, 2, 3, 1900544, 2, 3, 1835008, 2, 3, 1769472, 2, 3, 1703936, 2, 3, 1638400, 2, 3, 1572864, 2, 3, 1507328, 2, 3, 1441792, 2, 3, 1376256, 2, 3, 1310720, 2, 3, 1245184, 2, 3, 1179648, 2, 3, 1114112, 2, 3, 1048576, 2, 3, 983040, 2, 3, 917504, 2, 3, 851968, 2, 3, 786432, 2, 3, 720896, 2, 3, 655360, 2, 3, 589824, 2, 3, 524288, 2, 3, 458752, 2, 3, 393216, 2, 3, 327680, 2, 3, 262144, 2, 3, 196608, 2, 3, 131072, 2, 3, 65536, 2, 3, 0, 2, 3, 1900545, 262146, 1, 1900546, 262146, 1, 1900547, 262146, 1, 1900548, 262146, 1, 1900549, 196610, 4, 1900550, 262146, 1, 1900551, 262146, 1, 1900552, 262146, 1, 1900553, 262146, 1, 1900554, 262146, 1, 1900555, 196610, 4, 1900556, 262146, 1, 1900557, 262146, 1, 1900558, 262146, 1, 1900559, 262146, 1, 1835013, 196610, 3, 1769477, 196610, 3, 1703941, 196610, 3, 1638405, 196610, 3, 1572869, 196610, 3, 1507333, 196610, 3, 1441797, 196610, 3, 1376261, 196610, 3, 1310725, 196610, 3, 1245189, 196610, 3, 1179653, 196610, 3, 1114117, 196610, 3, 1835019, 196610, 3, 1769483, 196610, 3, 1703947, 196610, 3, 1638411, 196610, 3, 1572875, 196610, 3, 1507339, 196610, 3, 1441803, 196610, 3, 1376267, 196610, 3, 1310731, 196610, 3, 1245195, 196610, 3, 1179659, 196610, 3, 1114123, 196610, 3, 1048591, 262146, 1, 1048590, 262146, 1, 1048589, 262146, 1, 1048588, 262146, 1, 1048587, 196610, 3, 1048586, 262146, 1, 1048585, 262146, 1, 1048584, 262146, 1, 1048583, 262146, 1, 1048582, 262146, 1, 1048581, 196610, 3, 1048580, 262146, 1, 1048579, 262146, 1, 1048578, 262146, 1, 1048577, 262146, 1, 983051, 196610, 2, 983045, 196610, 2, 196609, 262146, 1, 196610, 262146, 1, 196611, 262146, 1, 196612, 262146, 1, 196613, 262146, 1, 196614, 262146, 1, 196615, 262146, 1, 196616, 262146, 1, 196617, 262146, 1, 196618, 262146, 1, 196619, 262146, 1, 196620, 262146, 1, 196621, 262146, 1, 196622, 262146, 1, 196623, 262146, 1)
+
+[node name="loadAnotherChunk" type="Area2D" parent="."]
+script = ExtResource("2_7ut83")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="loadAnotherChunk"]
+position = Vector2(137, 6)
+shape = SubResource("RectangleShape2D_kkx0r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(135.5, 324)
+scale = Vector2(13.55, 32.4)
+
+[node name="EnemyBoundary" parent="." instance=ExtResource("3_wxs6h")]
+position = Vector2(64, 565)
+
+[node name="CollisionShape2D2" parent="EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(195, 0)
+
+[node name="EnemyBoundary2" parent="." instance=ExtResource("3_wxs6h")]
+position = Vector2(64, 145)
+
+[node name="enemy" parent="EnemyBoundary2" index="0"]
+delay = 2
+
+[node name="CollisionShape2D2" parent="EnemyBoundary2/StaticBody2D" index="1"]
+position = Vector2(195, 0)
+
+[node name="Carrot" parent="." instance=ExtResource("4_pkv61")]
+position = Vector2(48, 409)
+
+[node name="Carrot2" parent="." instance=ExtResource("4_pkv61")]
+position = Vector2(52, 327)
+
+[node name="Carrot3" parent="." instance=ExtResource("4_pkv61")]
+position = Vector2(226, 359)
+
+[node name="jumpPad" parent="." instance=ExtResource("5_t48pn")]
+position = Vector2(129, 535)
+
+[connection signal="body_entered" from="loadAnotherChunk" to="loadAnotherChunk" method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="loadAnotherChunk" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+
+[editable path="EnemyBoundary"]
+[editable path="EnemyBoundary2"]

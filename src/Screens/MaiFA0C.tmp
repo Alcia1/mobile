@@ -1,0 +1,667 @@
+[gd_scene load_steps=16 format=3 uid="uid://clkkh5vswjlth"]
+
+[ext_resource type="Script" path="res://src/Screens/Endless.gd" id="1_2nygk"]
+[ext_resource type="Script" path="res://src/Screens/Settings.gd" id="1_a2por"]
+[ext_resource type="Texture2D" uid="uid://ci44u6no6ffle" path="res://assets/interface/title.png" id="1_d034j"]
+[ext_resource type="Texture2D" uid="uid://d3r4rbb0qcf6c" path="res://assets/interface/buttonBG.png" id="1_gb00h"]
+[ext_resource type="Script" path="res://src/Screens/MainMenu.gd" id="1_jyjml"]
+[ext_resource type="Texture2D" uid="uid://d3nyt16n3se2p" path="res://assets/interface/buttonBGClicked.png" id="2_4otv2"]
+[ext_resource type="Script" path="res://src/Screens/BGColor.gd" id="3_mk82v"]
+[ext_resource type="LabelSettings" uid="uid://bwanrr2igi5cs" path="res://src/Screens/interfaceFont.tres" id="4_8svgg"]
+[ext_resource type="Texture2D" uid="uid://bf4k366is57oj" path="res://assets/interface/close_button.png" id="4_cnxmb"]
+[ext_resource type="Script" path="res://src/Screens/Close.gd" id="4_j35bv"]
+[ext_resource type="Script" path="res://src/Screens/Campaign.gd" id="5_rfnhp"]
+[ext_resource type="Script" path="res://src/Screens/StartEndlessButton.gd" id="6_2ttfw"]
+[ext_resource type="Script" path="res://src/Screens/showConfirmDialog.gd" id="11_djpxk"]
+[ext_resource type="Script" path="res://src/Screens/resetSave.gd" id="11_qltnt"]
+[ext_resource type="PackedScene" uid="uid://bxqcjhfrg8t6s" path="res://src/Screens/CampaignButton.tscn" id="15_g83pu"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_jyjml")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 270.0
+offset_bottom = 648.0
+
+[node name="Title" type="Sprite2D" parent="Control"]
+position = Vector2(136, 161)
+texture = ExtResource("1_d034j")
+
+[node name="Campaign" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -29.0
+offset_right = 65.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("5_rfnhp")
+
+[node name="Label" type="Label" parent="Control/Campaign"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -10.0
+offset_right = 52.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "campaign"
+label_settings = ExtResource("4_8svgg")
+
+[node name="Endless" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 40.0
+offset_right = 65.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("1_2nygk")
+
+[node name="Label" type="Label" parent="Control/Endless"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -10.0
+offset_right = 58.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Endless"
+label_settings = ExtResource("4_8svgg")
+
+[node name="Settings" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 115.0
+offset_right = 65.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("1_a2por")
+
+[node name="Label" type="Label" parent="Control/Settings"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -10.0
+offset_right = 52.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "settings"
+label_settings = ExtResource("4_8svgg")
+
+[node name="SettingsMenu" type="CanvasLayer" parent="Control"]
+
+[node name="BGColor" type="ColorRect" parent="Control/SettingsMenu"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -250.0
+offset_right = 125.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(125, 250)
+script = ExtResource("3_mk82v")
+
+[node name="BGColor2" type="ColorRect" parent="Control/SettingsMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -248.0
+offset_right = 123.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Close" type="TextureButton" parent="Control/SettingsMenu/BGColor"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.02
+anchor_right = 0.95
+anchor_bottom = 0.02
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_cnxmb")
+script = ExtResource("4_j35bv")
+metadata/_edit_use_anchors_ = true
+
+[node name="ClearSave" type="TextureButton" parent="Control/SettingsMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 132.0
+offset_right = 64.0
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("11_djpxk")
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ClearSave"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -21.5
+offset_right = 33.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "clear
+save"
+label_settings = ExtResource("4_8svgg")
+horizontal_alignment = 1
+
+[node name="ConfirmDialog" type="ColorRect" parent="Control/SettingsMenu/BGColor"]
+visible = false
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 500.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(125, 250)
+script = ExtResource("3_mk82v")
+
+[node name="BGColor2" type="ColorRect" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -248.0
+offset_right = 123.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -137.0
+offset_right = 90.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Are you sure you want to reset your progress?"
+label_settings = ExtResource("4_8svgg")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="confirm" type="TextureButton" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -12.0
+offset_right = 64.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("11_qltnt")
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ConfirmDialog/confirm"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "yes"
+label_settings = ExtResource("4_8svgg")
+
+[node name="cancel" type="TextureButton" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 74.0
+offset_right = 64.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("4_j35bv")
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ConfirmDialog/cancel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -10.0
+offset_right = 13.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "no"
+label_settings = ExtResource("4_8svgg")
+
+[node name="EndlessMenu" type="CanvasLayer" parent="Control"]
+
+[node name="BGColor" type="ColorRect" parent="Control/EndlessMenu"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -250.0
+offset_right = 125.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(125, 250)
+script = ExtResource("3_mk82v")
+
+[node name="BGColor2" type="ColorRect" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -248.0
+offset_right = 123.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Close" type="TextureButton" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.88
+anchor_top = 0.02
+anchor_right = 0.95
+anchor_bottom = 0.022
+offset_left = -18.0
+offset_bottom = 31.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_cnxmb")
+script = ExtResource("4_j35bv")
+
+[node name="Label" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = -184.0
+offset_right = 66.5
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "high score"
+label_settings = ExtResource("4_8svgg")
+
+[node name="highScore" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -148.0
+offset_right = 9.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("4_8svgg")
+
+[node name="Label3" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -89.0
+offset_right = 118.5
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Distance travelled"
+label_settings = ExtResource("4_8svgg")
+
+[node name="distance" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -53.0
+offset_right = 9.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("4_8svgg")
+
+[node name="Label4" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -13.0
+offset_right = 106.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "enemies defeated"
+label_settings = ExtResource("4_8svgg")
+
+[node name="enemies" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = 20.0
+offset_right = 9.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("4_8svgg")
+
+[node name="Label5" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = 57.0
+offset_right = 76.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "time played"
+label_settings = ExtResource("4_8svgg")
+
+[node name="time" type="Label" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = 90.0
+offset_right = 9.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("4_8svgg")
+
+[node name="StartEndlessButton" type="TextureButton" parent="Control/EndlessMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 139.0
+offset_right = 64.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("6_2ttfw")
+
+[node name="Label" type="Label" parent="Control/EndlessMenu/BGColor/StartEndlessButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -11.5
+offset_right = 32.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "start"
+label_settings = ExtResource("4_8svgg")
+
+[node name="CampaignMenu" type="CanvasLayer" parent="Control"]
+
+[node name="BGColor" type="ColorRect" parent="Control/CampaignMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -250.0
+offset_right = 125.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(125, 250)
+script = ExtResource("3_mk82v")
+
+[node name="BGColor2" type="ColorRect" parent="Control/CampaignMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -248.0
+offset_right = 123.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Close" type="TextureButton" parent="Control/CampaignMenu/BGColor"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.02
+anchor_right = 0.95
+anchor_bottom = 0.02
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_cnxmb")
+script = ExtResource("4_j35bv")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control/CampaignMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_top = 57.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+text = "level select"
+label_settings = ExtResource("4_8svgg")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/CampaignMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -166.0
+offset_right = 100.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 200)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CampaignMenu/BGColor/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" parent="Control/CampaignMenu/BGColor/ScrollContainer/VBoxContainer" instance=ExtResource("15_g83pu")]
+layout_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="Control/CampaignMenu/BGColor/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+
+[node name="TextureButton3" type="TextureButton" parent="Control/CampaignMenu/BGColor/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+
+[node name="TextureButton4" type="TextureButton" parent="Control/CampaignMenu/BGColor/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+
+[node name="TextureButton5" type="TextureButton" parent="Control/CampaignMenu/BGColor/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+
+[node name="TextureButton6" type="TextureButton" parent="Control/CampaignMenu/BGColor/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+
+[node name="TextureButton7" type="TextureButton" parent="Control/CampaignMenu/BGColor/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(135, 324)
+
+[connection signal="pressed" from="Control/Campaign" to="Control/Campaign" method="_on_pressed"]
+[connection signal="pressed" from="Control/Endless" to="Control/Endless" method="_on_pressed"]
+[connection signal="pressed" from="Control/Settings" to="Control/Settings" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/Close" to="Control/SettingsMenu/BGColor/Close" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/ClearSave" to="Control/SettingsMenu/BGColor/ClearSave" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/ConfirmDialog/confirm" to="Control/SettingsMenu/BGColor/ConfirmDialog/confirm" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/ConfirmDialog/cancel" to="Control/SettingsMenu/BGColor/ConfirmDialog/cancel" method="_on_pressed"]
+[connection signal="pressed" from="Control/EndlessMenu/BGColor/Close" to="Control/EndlessMenu/BGColor/Close" method="_on_pressed"]
+[connection signal="pressed" from="Control/EndlessMenu/BGColor/StartEndlessButton" to="Control/EndlessMenu/BGColor/StartEndlessButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/CampaignMenu/BGColor/Close" to="Control/CampaignMenu/BGColor/Close" method="_on_pressed"]

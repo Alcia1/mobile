@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxqcjhfrg8t6s"]
+
+[ext_resource type="Texture2D" uid="uid://d3r4rbb0qcf6c" path="res://assets/interface/buttonBG.png" id="1_yw0vw"]
+[ext_resource type="Texture2D" uid="uid://d3nyt16n3se2p" path="res://assets/interface/buttonBGClicked.png" id="2_14wyd"]
+[ext_resource type="Script" path="res://src/Screens/loadLevel.gd" id="3_mqxba"]
+[ext_resource type="LabelSettings" uid="uid://bwanrr2igi5cs" path="res://src/Screens/interfaceFont.tres" id="4_fv8gl"]
+
+[node name="TextureButton" type="TextureButton"]
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_yw0vw")
+texture_pressed = ExtResource("2_14wyd")
+script = ExtResource("3_mqxba")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -11.5
+offset_right = 46.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "level 1"
+label_settings = ExtResource("4_fv8gl")
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 1
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 27.0
+text = "*"
+label_settings = ExtResource("4_fv8gl")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

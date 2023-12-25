@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://clkkh5vswjlth"]
+[gd_scene load_steps=23 format=3 uid="uid://clkkh5vswjlth"]
 
 [ext_resource type="Script" path="res://src/Screens/Endless.gd" id="1_2nygk"]
 [ext_resource type="Script" path="res://src/Screens/Settings.gd" id="1_a2por"]
@@ -10,7 +10,18 @@
 [ext_resource type="LabelSettings" uid="uid://bwanrr2igi5cs" path="res://src/Screens/interfaceFont.tres" id="4_8svgg"]
 [ext_resource type="Texture2D" uid="uid://bf4k366is57oj" path="res://assets/interface/close_button.png" id="4_cnxmb"]
 [ext_resource type="Script" path="res://src/Screens/Close.gd" id="4_j35bv"]
+[ext_resource type="Script" path="res://src/Screens/Campaign.gd" id="5_rfnhp"]
 [ext_resource type="Script" path="res://src/Screens/StartEndlessButton.gd" id="6_2ttfw"]
+[ext_resource type="Script" path="res://src/Screens/showConfirmDialog.gd" id="11_djpxk"]
+[ext_resource type="Script" path="res://src/Screens/resetSave.gd" id="11_qltnt"]
+[ext_resource type="Script" path="res://src/Screens/music.gd" id="13_ybhe8"]
+[ext_resource type="Script" path="res://src/Screens/sfx.gd" id="14_smky7"]
+[ext_resource type="Texture2D" uid="uid://dd8r2yyx2ynt7" path="res://assets/interface/mmBG.png" id="15_pt752"]
+[ext_resource type="Script" path="res://src/Screens/mmBG.gd" id="16_emqs3"]
+[ext_resource type="PackedScene" uid="uid://cuptju6fgb1xq" path="res://src/Enemies/EnemyBase/EnemyBase.tscn" id="17_d3l5v"]
+[ext_resource type="PackedScene" uid="uid://wriknwqriily" path="res://src/Enemies/EnemyLineMove/EnemyBoundary.tscn" id="18_7qicw"]
+[ext_resource type="PackedScene" uid="uid://spekhfa20cwy" path="res://src/player/Collectibles/carrot.tscn" id="19_5v6w7"]
+[ext_resource type="AudioStream" uid="uid://bkv70a3y501yi" path="res://assets/music/Clement Panchout _ Jelly Blob _ 2017.wav" id="20_i0lc5"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_jyjml")
@@ -40,6 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("1_gb00h")
 texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("5_rfnhp")
 
 [node name="Label" type="Label" parent="Control/Campaign"]
 texture_filter = 1
@@ -135,14 +147,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -125.0
 offset_top = -250.0
-offset_right = 100.0
+offset_right = 125.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
-pivot_offset = Vector2(100, 250)
+pivot_offset = Vector2(125, 250)
 script = ExtResource("3_mk82v")
 
 [node name="BGColor2" type="ColorRect" parent="Control/SettingsMenu/BGColor"]
@@ -152,10 +164,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -245.0
-offset_right = 95.0
-offset_bottom = 245.0
+offset_left = -123.0
+offset_top = -248.0
+offset_right = 123.0
+offset_bottom = 248.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -175,26 +187,143 @@ texture_normal = ExtResource("4_cnxmb")
 script = ExtResource("4_j35bv")
 metadata/_edit_use_anchors_ = true
 
-[node name="ClearSave" type="Button" parent="Control/SettingsMenu/BGColor"]
+[node name="ClearSave" type="TextureButton" parent="Control/SettingsMenu/BGColor"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -44.5
-offset_top = -15.5
-offset_right = 44.5
-offset_bottom = 15.5
+offset_left = -64.0
+offset_top = 132.0
+offset_right = 64.0
+offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Clear Save"
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("11_djpxk")
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ClearSave"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -21.5
+offset_right = 33.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "clear
+save"
+label_settings = ExtResource("4_8svgg")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 69.0
+offset_right = 33.0
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "music"
+label_settings = ExtResource("4_8svgg")
+
+[node name="Label2" type="Label" parent="Control/SettingsMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 211.0
+offset_right = 33.0
+offset_bottom = 234.0
+grow_horizontal = 2
+text = "sound effects"
+label_settings = ExtResource("4_8svgg")
+
+[node name="music" type="TextureButton" parent="Control/SettingsMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -136.0
+offset_right = 64.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("13_ybhe8")
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/music"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -10.0
+offset_right = 33.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "mute"
+label_settings = ExtResource("4_8svgg")
+horizontal_alignment = 1
+
+[node name="sfx" type="TextureButton" parent="Control/SettingsMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 13.0
+offset_right = 64.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("14_smky7")
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/sfx"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -10.0
+offset_right = 33.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "mute"
+label_settings = ExtResource("4_8svgg")
+horizontal_alignment = 1
 
 [node name="ConfirmDialog" type="ColorRect" parent="Control/SettingsMenu/BGColor"]
 visible = false
 layout_mode = 0
-offset_right = 200.0
+offset_right = 250.0
 offset_bottom = 500.0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(125, 250)
+script = ExtResource("3_mk82v")
 
 [node name="BGColor2" type="ColorRect" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
 layout_mode = 1
@@ -203,59 +332,103 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -245.0
-offset_right = 95.0
-offset_bottom = 245.0
+offset_left = -123.0
+offset_top = -248.0
+offset_right = 123.0
+offset_bottom = 248.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.114897, 0.114897, 0.114897, 1)
+color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ConfirmDialog/BGColor2"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 88.0
-offset_right = 185.0
-offset_bottom = 168.0
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -137.0
+offset_right = 90.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Are you sure you want to reset your progress?"
+label_settings = ExtResource("4_8svgg")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="Control/SettingsMenu/BGColor/ConfirmDialog/BGColor2"]
+[node name="confirm" type="TextureButton" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -17.5
-offset_top = -15.5
-offset_right = 17.5
-offset_bottom = 15.5
+offset_left = -64.0
+offset_top = -12.0
+offset_right = 64.0
+offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Yes"
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("11_qltnt")
 
-[node name="Button2" type="Button" parent="Control/SettingsMenu/BGColor/ConfirmDialog/BGColor2"]
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ConfirmDialog/confirm"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = 25.0
-offset_right = 18.0
-offset_bottom = 56.0
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "No
-"
+text = "yes"
+label_settings = ExtResource("4_8svgg")
+
+[node name="cancel" type="TextureButton" parent="Control/SettingsMenu/BGColor/ConfirmDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 74.0
+offset_right = 64.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_gb00h")
+texture_pressed = ExtResource("2_4otv2")
+script = ExtResource("4_j35bv")
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/BGColor/ConfirmDialog/cancel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -10.0
+offset_right = 13.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "no"
+label_settings = ExtResource("4_8svgg")
 
 [node name="EndlessMenu" type="CanvasLayer" parent="Control"]
 
 [node name="BGColor" type="ColorRect" parent="Control/EndlessMenu"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -267,6 +440,7 @@ offset_right = 125.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(125, 250)
 script = ExtResource("3_mk82v")
 
@@ -459,11 +633,147 @@ grow_vertical = 2
 text = "start"
 label_settings = ExtResource("4_8svgg")
 
+[node name="CampaignMenu" type="CanvasLayer" parent="Control"]
+
+[node name="BGColor" type="ColorRect" parent="Control/CampaignMenu"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -250.0
+offset_right = 125.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(125, 250)
+script = ExtResource("3_mk82v")
+
+[node name="BGColor2" type="ColorRect" parent="Control/CampaignMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -248.0
+offset_right = 123.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Close" type="TextureButton" parent="Control/CampaignMenu/BGColor"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.02
+anchor_right = 0.95
+anchor_bottom = 0.02
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_cnxmb")
+script = ExtResource("4_j35bv")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control/CampaignMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_top = 57.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+text = "level select"
+label_settings = ExtResource("4_8svgg")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/CampaignMenu/BGColor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -166.0
+offset_right = 100.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 200)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CampaignMenu/BGColor/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(135, 324)
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+position = Vector2(135, 0)
+texture = ExtResource("15_pt752")
+script = ExtResource("16_emqs3")
+
+[node name="enemy" parent="Sprite2D" instance=ExtResource("17_d3l5v")]
+position = Vector2(67, 166)
+
+[node name="enemy2" parent="Sprite2D" instance=ExtResource("17_d3l5v")]
+position = Vector2(-30, 521)
+
+[node name="enemy3" parent="Sprite2D" instance=ExtResource("17_d3l5v")]
+position = Vector2(59, 822)
+
+[node name="EnemyBoundary" parent="Sprite2D" instance=ExtResource("18_7qicw")]
+
+[node name="CollisionShape2D" parent="Sprite2D/EnemyBoundary/StaticBody2D" index="0"]
+position = Vector2(-122, 2)
+
+[node name="CollisionShape2D2" parent="Sprite2D/EnemyBoundary/StaticBody2D" index="1"]
+position = Vector2(124, -1)
+
+[node name="EnemyBoundary2" parent="Sprite2D" instance=ExtResource("18_7qicw")]
+position = Vector2(-24, 639)
+
+[node name="CollisionShape2D2" parent="Sprite2D/EnemyBoundary2/StaticBody2D" index="1"]
+position = Vector2(148, -4)
+
+[node name="Carrot" parent="Sprite2D" instance=ExtResource("19_5v6w7")]
+position = Vector2(-40, 789)
+
+[node name="Carrot2" parent="Sprite2D" instance=ExtResource("19_5v6w7")]
+position = Vector2(-48, 358)
+
+[node name="Carrot3" parent="Sprite2D" instance=ExtResource("19_5v6w7")]
+position = Vector2(33, -65)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_i0lc5")
+autoplay = true
+
+[connection signal="pressed" from="Control/Campaign" to="Control/Campaign" method="_on_pressed"]
 [connection signal="pressed" from="Control/Endless" to="Control/Endless" method="_on_pressed"]
 [connection signal="pressed" from="Control/Settings" to="Control/Settings" method="_on_pressed"]
 [connection signal="pressed" from="Control/SettingsMenu/BGColor/Close" to="Control/SettingsMenu/BGColor/Close" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/ClearSave" to="Control/SettingsMenu/BGColor/ClearSave" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/music" to="Control/SettingsMenu/BGColor/music" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/sfx" to="Control/SettingsMenu/BGColor/sfx" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/ConfirmDialog/confirm" to="Control/SettingsMenu/BGColor/ConfirmDialog/confirm" method="_on_pressed"]
+[connection signal="pressed" from="Control/SettingsMenu/BGColor/ConfirmDialog/cancel" to="Control/SettingsMenu/BGColor/ConfirmDialog/cancel" method="_on_pressed"]
 [connection signal="pressed" from="Control/EndlessMenu/BGColor/Close" to="Control/EndlessMenu/BGColor/Close" method="_on_pressed"]
 [connection signal="pressed" from="Control/EndlessMenu/BGColor/StartEndlessButton" to="Control/EndlessMenu/BGColor/StartEndlessButton" method="_on_pressed"]
+[connection signal="pressed" from="Control/CampaignMenu/BGColor/Close" to="Control/CampaignMenu/BGColor/Close" method="_on_pressed"]
+
+[editable path="Sprite2D/EnemyBoundary"]
+[editable path="Sprite2D/EnemyBoundary2"]
