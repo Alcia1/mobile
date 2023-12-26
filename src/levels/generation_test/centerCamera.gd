@@ -12,7 +12,10 @@ func _physics_process(_delta):
 		self.position.y = player.position.y - 100
 	
 	if player != null and start and moving:
-		self.position.y -= 1
+		if position.y > -5000:
+			self.position.y -= 1
+		else:
+			self.position.y -= 2
 		if int(self.position.y) % 3 == 0:
 			player.point_count += 1
 		if int(self.position.y) % 50 == 0:

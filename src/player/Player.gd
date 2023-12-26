@@ -88,9 +88,6 @@ func _physics_process(delta):
 				velocity.y = -WALK_SPEED * 2
 			if Input.is_action_pressed("ui_down"):
 				velocity.y = WALK_SPEED * 2
-	
-	if $AnimatedSprite2D.animation != "idle" and $AnimatedSprite2D.is_playing() == true:
-		$AnimationPlayer.pause()
 		
 	###TEST END SCENE
 	#if disable_input and is_on_floor() and !end_scene_set:
@@ -108,10 +105,8 @@ func _physics_process(delta):
 			$AnimatedSprite2D.play("jump")
 		elif velocity.x != 0 and is_on_floor():
 			$AnimatedSprite2D.play("walk")
-		elif velocity.x == 0 and is_on_floor() and $AnimationPlayer.current_animation != "idle":
+		elif velocity.x == 0 and is_on_floor():
 			$AnimatedSprite2D.animation = "idle"
-			$AnimatedSprite2D.stop()
-			$AnimationPlayer.play("idle")
 		if velocity.x > 0:
 			$AnimatedSprite2D.flip_h = true
 		elif velocity.x < 0:

@@ -42,11 +42,11 @@ func _on_button_pressed():
 	get_tree().reload_current_scene()
 
 func _on_pause_pressed():
-	get_child(0).process_mode = Node.PROCESS_MODE_DISABLED
-	get_child(7).process_mode = Node.PROCESS_MODE_DISABLED
+	$player.process_mode = Node.PROCESS_MODE_DISABLED
+	$AudioStreamPlayer2D.process_mode = Node.PROCESS_MODE_DISABLED
 	find_child("debug").get_child(5).animate(true)
 	
 func _on_resume_pressed():
 	find_child("debug").get_child(5).animate(false)
-	get_child(0).process_mode = Node.PROCESS_MODE_INHERIT
-	get_child(7).process_mode = Node.PROCESS_MODE_INHERIT
+	$player.process_mode = Node.PROCESS_MODE_INHERIT
+	$AudioStreamPlayer2D.process_mode = Node.PROCESS_MODE_INHERIT

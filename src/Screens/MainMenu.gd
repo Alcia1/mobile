@@ -27,7 +27,6 @@ func displayCampaignStats():
 		CampaignMenu.remove_child(i)
 	
 	for i in SaveGame.saveDataCampaign.keys():
-		print(i)
 		var instance = CampaignButton.instantiate()
 		
 		instance.level = int(i)

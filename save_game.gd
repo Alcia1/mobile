@@ -1,6 +1,5 @@
 extends Node
 
-#pozmieniac max score
 var saveDataCampaign = {
 	"1" = {
 		"max_score": 1300,
@@ -68,7 +67,6 @@ func resetSave():
 	
 	var saveFile = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	saveFile.close()
-	DirAccess.remove_absolute("user://savegame.save")
 	
 	saveToFile()
 	loadFromFile()
